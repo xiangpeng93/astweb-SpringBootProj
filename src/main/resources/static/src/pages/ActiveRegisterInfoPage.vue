@@ -41,7 +41,7 @@
         data: function () {
             return {
                 registerInfoList: [],
-                host: "127.0.0.1:8080",
+                host: window.location.host,
                 head:"活动名称报名信息展示",
             }
         },
