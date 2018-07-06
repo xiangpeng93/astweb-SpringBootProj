@@ -70,7 +70,7 @@
         },
         data(){
             return{
-                host: window.location.host
+                host: window.location.host+":8080"
             }
         },
         computed: {

@@ -68,7 +68,7 @@
           emailAddr: "",
           passwd1: "",
           passwd2: "",
-          host:window.location.host
+          host:window.location.host+":8080"
       }
   },
   methods: {
