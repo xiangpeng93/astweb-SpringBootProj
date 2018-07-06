@@ -34,7 +34,7 @@ public interface ActiveInfoMapper {
     })
     ActiveInfo getActiveByHead(String activeHead);
 
-    @Select("SELECT * FROM actives_info WHERE id=#{arg0}")
+    @Select("SELECT * FROM actives_info WHERE id=#{param1}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "activeCount", column = "activeCount"),
@@ -47,7 +47,7 @@ public interface ActiveInfoMapper {
     })
     ActiveInfo getActiveById(int id);
 
-    @Select("SELECT * FROM actives_info WHERE activeHead=#{arg0}")
+    @Select("SELECT * FROM actives_info WHERE activeHead=#{param1}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "activeCount", column = "activeCount"),
@@ -61,7 +61,7 @@ public interface ActiveInfoMapper {
     ActiveInfo getActiveByActiveName(String name);
 
 
-    @Select("select * from actives_info ORDER BY id DESC LIMIT #{arg0},#{arg1}")
+    @Select("select * from actives_info ORDER BY id DESC LIMIT #{param1},#{param2}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "activeCount", column = "activeCount"),
@@ -74,7 +74,7 @@ public interface ActiveInfoMapper {
     })
     List<ActiveInfo> getActiveByStartNumAndCount(int activeBegin,int activeCount);
 
-    @Select("SELECT activeUserCount FROM actives_info WHERE id=#{arg0}")
+    @Select("SELECT activeUserCount FROM actives_info WHERE id=#{param1}")
     @Results({
             @Result(property = "activeUserCount", column = "activeUserCount")
     })
@@ -86,6 +86,6 @@ public interface ActiveInfoMapper {
     @Update("UPDATE actives_info SET activeHead=#{activeHead},activeCount=#{activeCount},activeBody=#{activeBody},activeAuthor=#{activeAuthor},activeUserCount=#{activeUserCount},activeBrowersCount=#{activeBrowersCount} WHERE id =#{id} or activeHead =#{activeHead} ")
     int update(ActiveInfo user);
 
-    @Delete("DELETE FROM actives_info WHERE id = #{arg0}")
+    @Delete("DELETE FROM actives_info WHERE id = #{param1}")
     int delete(int id);
 }

@@ -23,7 +23,7 @@ public interface JoinInfoMapper {
     })
     List<JoinInfo> getAllJoinsInfo();
 
-    @Select("SELECT * FROM joins_info WHERE activeId=#{arg0} and activeSession=#{arg1}")
+    @Select("SELECT * FROM joins_info WHERE activeId=#{param1} and activeSession=#{param2}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "userName", column = "userName"),
@@ -38,7 +38,7 @@ public interface JoinInfoMapper {
     })
     List<JoinInfo> getJoinsByActiveIdAndSession(int activeId,String activeSession);
 
-    @Select("SELECT * FROM joins_info WHERE activeId=#{arg0}")
+    @Select("SELECT * FROM joins_info WHERE activeId=#{param1}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "userName", column = "userName"),
@@ -53,7 +53,7 @@ public interface JoinInfoMapper {
     })
     List<JoinInfo> getJoinsByActiveId(int activeId);
 
-    @Select("SELECT * FROM joins_info WHERE userName=#{arg0} and activeId=#{arg1}")
+    @Select("SELECT * FROM joins_info WHERE userName=#{param1} and activeId=#{param2}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "userName", column = "userName"),
@@ -75,6 +75,6 @@ public interface JoinInfoMapper {
     @Update("UPDATE joins_info SET payNum=#{payNum},payOrder=#{payOrder} WHERE id =#{id}")
     int update(JoinInfo user);
 
-    @Delete("DELETE FROM joins_info WHERE id = #{arg0}")
+    @Delete("DELETE FROM joins_info WHERE id = #{param1}")
     int delete(int id);
 }
