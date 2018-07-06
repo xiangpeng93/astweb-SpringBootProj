@@ -9,6 +9,8 @@ public class JoinInfo {
     public  String userAge;
     public int activeId;
     public String activeName;
+    public String userPhone;
+    public String activeSession;
     public String joinDate;
     public String payNum;
     public String payOrder;

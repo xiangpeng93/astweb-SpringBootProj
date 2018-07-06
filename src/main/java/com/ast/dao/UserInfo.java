@@ -11,5 +11,8 @@ public class UserInfo{
     public String userAge;
     public String userRegisterDate;
     public String userHomeRegion;
+    public String emailAddr;
+    public String userPhoneNum;
+    public String userPrivilege;
     public String otherInfo;
 }

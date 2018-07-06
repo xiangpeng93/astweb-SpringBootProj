@@ -27,18 +27,14 @@ public class UserManger {
 
     @Autowired
     private UserInfoMapper m_userMapper;
-    private  String LocalUrl = "http://127.0.0.1:8088";
+    private  String LocalUrl = "*";
     /* *
     * UserRegister Test Url
     * http://127.0.0.1:8080/UserRegister?userName=testName&passWord=123456&userSex=boy&userAge=10&userHomeRegion=西湖&otherInfo=none
     * */
     @RequestMapping(value="/UserRegister",method=RequestMethod.GET)
-    public int UserRegister(HttpServletRequest request, HttpServletResponse response){
-        response.setContentType("text/html;charset=utf-8");
-        response.setHeader("Access-Control-Allow-Origin", LocalUrl);  // 第二个参数填写允许跨域的域名称，不建议直接写 "*"
-        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
-        response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
+    public int UserRegister(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        _addResponseHead(response);
 
         String username=request.getParameter("userName");
         String passWord=request.getParameter("passWord");
@@ -46,6 +42,9 @@ public class UserManger {
         String userAge=request.getParameter("userAge");
         String userHomeRegion=request.getParameter("userHomeRegion");
         String otherInfo=request.getParameter("otherInfo");
+        String emailAddr=request.getParameter("emailAddr");
+        String userPhoneNum=request.getParameter("userPhoneNum");
+        String userPrivilege=request.getParameter("userPrivilege");
         PrintlnLog("Info: "+"username "+username);
         PrintlnLog("Info: "+"password "+passWord);
         PrintlnLog("Info: "+"userSex "+userSex);
@@ -60,6 +59,9 @@ public class UserManger {
         user.userAge = userAge;
         user.userHomeRegion = userHomeRegion;
         user.otherInfo = otherInfo;
+        user.emailAddr = emailAddr;
+        user.userPhoneNum = userPhoneNum;
+        user.userPrivilege = userPrivilege;
         try{
             nRet = _checkUserInfoExist(user);
             if(nRet == REGISTER_SUCCESS)
@@ -73,18 +75,13 @@ public class UserManger {
         }
         return nRet;
     }
-
     /* *
-    * UserLogin Test Url
-    * http://127.0.0.1:8080/UserLogin?userName=testName&passWord=12345
-    * */
+       * UserLogin Test Url
+       * http://127.0.0.1:8080/UserLogin?userName=testName&passWord=12345
+       * */
     @RequestMapping(value="/UserLogin",method=RequestMethod.GET)
-    public int UserLogin(HttpServletRequest request,HttpServletResponse response){
-        response.setContentType("text/html;charset=utf-8");
-        response.setHeader("Access-Control-Allow-Origin", LocalUrl);  // 第二个参数填写允许跨域的域名称，不建议直接写 "*"
-        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
-        response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
+    public int UserLogin(HttpServletRequest request,HttpServletResponse response)throws Exception{
+        _addResponseHead(response);
 
         String username=request.getParameter("userName");
         String passWord=request.getParameter("passWord");
@@ -103,6 +100,25 @@ public class UserManger {
         return nRet;
     }
 
+    /* *
+    * GetUserInfo Test Url
+    * http://127.0.0.1:8080/UserLogin?userName=testName&passWord=12345
+    * */
+    @RequestMapping(value="/GetUserInfo",method=RequestMethod.GET)
+    public UserInfo GetUserInfo(HttpServletRequest request,HttpServletResponse response)throws Exception{
+        _addResponseHead(response);
+
+        String username=request.getParameter("userName");
+        PrintlnLog("Info: "+"username "+username);
+        try{
+            return  m_userMapper.getUserByName(username);
+        }
+        catch (Exception e){
+            PrintlnLog("Error: "+e.toString());
+        }
+        return null;
+    }
+
     private  void PrintlnLog(String msg){
         System.out.println(msg);
     }
@@ -119,6 +135,13 @@ public class UserManger {
             return USER_ALREADY_EXIST;
         }
     }
+
+    private  void _addResponseHead(HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", LocalUrl);
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
+        response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+    };
 
     private int _checkUserInfoLogin(UserInfo info){
         UserInfo tUserInfo = m_userMapper.getUserByName(info.userName);

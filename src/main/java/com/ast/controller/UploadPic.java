@@ -32,11 +32,12 @@ public class UploadPic {
         public int errno;
         public List<String> data;
     };
-    String LoaclUrl = "http://127.0.0.1:8088/";
+    String LoaclUrl = "*";
+    String PicUrl = "http://127.0.0.1:8088/";
     String FileDir = "C:\\Users\\xiangpeng\\IdeaProjects\\astweb\\src\\main\\resources\\templates\\";
     @RequestMapping(value = "/uploadPic",method = RequestMethod.POST)
     public picData uploadPic(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", LoaclUrl);
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
         response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
         response.setHeader("Access-Control-Allow-Credentials", "true");
@@ -52,7 +53,7 @@ public class UploadPic {
             try {
                 System.out.println("Value = " + entry.getValue().getName());
                 String fileName = entry.getValue().getOriginalFilename();
-                PicData.data.add(LoaclUrl + fileName);
+                PicData.data.add(PicUrl + fileName);
                 FileOutputStream fos = new FileOutputStream(FileDir+ fileName);//打开FileOutStrean流
                 IOUtils.copy(entry.getValue().getInputStream(), fos);//将MultipartFile file转成二进制流并输入到FileOutStrean
                 fos.close();

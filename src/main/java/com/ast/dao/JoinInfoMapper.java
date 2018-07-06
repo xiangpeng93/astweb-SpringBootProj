@@ -23,6 +23,21 @@ public interface JoinInfoMapper {
     })
     List<JoinInfo> getAllJoinsInfo();
 
+    @Select("SELECT * FROM joins_info WHERE activeId=#{arg0} and activeSession=#{arg1}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "userName", column = "userName"),
+            @Result(property = "userAge", column = "userAge"),
+            @Result(property = "activeId", column = "activeId"),
+            @Result(property = "activeName", column = "activeName"),
+            @Result(property = "activeSession", column = "activeSession"),
+            @Result(property = "joinDate", column = "joinDate"),
+            @Result(property = "payNum", column = "payNum"),
+            @Result(property = "payOrder", column = "payOrder"),
+            @Result(property = "otherInfo", column = "otherInfo")
+    })
+    List<JoinInfo> getJoinsByActiveIdAndSession(int activeId,String activeSession);
+
     @Select("SELECT * FROM joins_info WHERE activeId=#{arg0}")
     @Results({
             @Result(property = "id", column = "id"),
@@ -30,6 +45,7 @@ public interface JoinInfoMapper {
             @Result(property = "userAge", column = "userAge"),
             @Result(property = "activeId", column = "activeId"),
             @Result(property = "activeName", column = "activeName"),
+            @Result(property = "activeSession", column = "activeSession"),
             @Result(property = "joinDate", column = "joinDate"),
             @Result(property = "payNum", column = "payNum"),
             @Result(property = "payOrder", column = "payOrder"),
@@ -41,9 +57,11 @@ public interface JoinInfoMapper {
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "userName", column = "userName"),
+            @Result(property = "userPhone", column = "userPhone"),
             @Result(property = "userAge", column = "userAge"),
             @Result(property = "activeId", column = "activeId"),
             @Result(property = "activeName", column = "activeName"),
+            @Result(property = "activeSession", column = "activeSession"),
             @Result(property = "joinDate", column = "joinDate"),
             @Result(property = "payNum", column = "payNum"),
             @Result(property = "payOrder", column = "payOrder"),
@@ -51,7 +69,7 @@ public interface JoinInfoMapper {
     })
     List<JoinInfo> checkUserJoinActive(String userName,int activeId);
 
-    @Insert("INSERT INTO joins_info(userName,userAge,activeId,activeName,otherInfo) VALUES( #{userName}, #{userAge}, #{activeId},#{activeName}, #{otherInfo})")
+    @Insert("INSERT INTO joins_info(userName,userPhone,userAge,activeId,activeName,activeSession,otherInfo) VALUES( #{userName}, #{userPhone}, #{userAge}, #{activeId},#{activeName}, #{activeSession}, #{otherInfo})")
     int insert(JoinInfo info);
 
     @Update("UPDATE joins_info SET payNum=#{payNum},payOrder=#{payOrder} WHERE id =#{id}")
