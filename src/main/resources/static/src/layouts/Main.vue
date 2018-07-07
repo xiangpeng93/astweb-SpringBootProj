@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
     <div id="mainDiv">
-        <nav name="nav" class="nav navbar navbar-default navbar-fixed-top">
+        <nav style="display: block;" name="nav" class="nav navbar navbar-inverse navbar-static-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -33,7 +33,8 @@
             </div>
         </nav>
 
-        <div style="padding-top:50px;height:80%;width:100%">
+
+        <div style="height:100%;width:100%;display: block;">
             <slot></slot>
         </div>
 
@@ -52,11 +53,12 @@
                         <p><a href="#">浙江省科技馆</a></p></div>
                 </div>
                 <div class="col-sm-3" style="padding-bottom: 20px">
-                    <div class="text-center"><img src="/img/astcode.jpeg">
+                    <div class="text-center">
+                        <img src="/img/astcode.jpg" width="150" height="150">
                         <p style="margin-top: 10px; color: #ccc">扫一扫关注ASTSpace微信公众号</p></div>
                 </div>
             </div>
-            <div class="row text-center" style="padding:10px; background-color: #2e2e2e; color: #ccc">@2017 AST创客空间
+            <div class="row text-center" style="padding:10px; background-color: #2e2e2e; color: #ccc">@2017 AST Space创客空间
             </div>
         </div>
     </div>
@@ -70,7 +72,7 @@
         },
         data(){
             return{
-                host: window.location.host+":8080"
+                host: window.location.host
             }
         },
         computed: {
@@ -147,16 +149,22 @@
                 return false;
             },
             GetUserInfo: function () {
-                if(this.IsLogin())
-                {
-                    var submitUrl = "http://" + this.host + "/GetUserInfo";
-                    var htmlobj = $.ajax({type: 'GET', url: submitUrl, data: {userName: this.getCookie("userId")}, async: false});
-                    console.log(htmlobj.responseText);
-                    var resultData = JSON.parse(htmlobj.responseText);
-                    if (resultData.userPrivilege == "999")
+                try{
+                    if(this.IsLogin())
                     {
-                        return true;
+                        var submitUrl = "http://" + this.host + "/GetUserInfo";
+                        var htmlobj = $.ajax({type: 'GET', url: submitUrl, data: {userName: this.getCookie("userId")}, async: false});
+                        console.log(htmlobj.responseText);
+                        var resultData = JSON.parse(htmlobj.responseText);
+                        if (resultData.userPrivilege == "999")
+                        {
+                            return true;
+                        }
                     }
+                }
+                catch (error)
+                {
+                    console.log(error)
                 }
                 return false;
             }

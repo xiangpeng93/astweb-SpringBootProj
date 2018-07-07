@@ -21,7 +21,7 @@
         data() {
             return {
                 items: [],
-                host:window.location.host+":8080",
+                host:window.location.host,
                 webHost:window.location.host,
                 defaultImg:"img/1.jpg"
             }

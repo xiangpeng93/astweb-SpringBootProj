@@ -58,7 +58,7 @@
         data()
         {
             return {
-                host: window.location.host+":8080",
+                host: window.location.host,
                 id: 0
             }
         },

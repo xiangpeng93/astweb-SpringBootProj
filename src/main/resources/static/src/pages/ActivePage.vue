@@ -91,7 +91,7 @@
                 peopleNumber: 100,
                 registerNum: 100,
                 required: true,
-                host:window.location.host+":8080"
+                host:window.location.host
             }
         },
         methods: {

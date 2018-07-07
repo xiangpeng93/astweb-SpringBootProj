@@ -33,7 +33,7 @@
             return {
                 userName: "",
                 passwd: "",
-                host: window.location.host+":8080"
+                host: window.location.host
             }
         },
         methods: {
