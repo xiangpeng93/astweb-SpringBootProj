@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-sm-3" style="padding-bottom: 20px">
                     <div class="text-center">
-                        <img src="/img/astcode.jpg" width="150" height="150">
+                        <img src="/img/astCode.jpg" width="150" height="150">
                         <p style="margin-top: 10px; color: #ccc">扫一扫关注ASTSpace微信公众号</p></div>
                 </div>
             </div>
