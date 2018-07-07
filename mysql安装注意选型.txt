@@ -1,0 +1,18 @@
+Centos7 关闭Selinux以及防火墙：
+修改 /etc/selinux/config
+systemctl stop firewalld
+
+mysql安装，在Centos中需要安装以下：
+mariadb-server mariadb mysql mysql-devel
+
+配置需要启用远程访问：
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'MyPassword' WITH GRANT OPTION;
+FLUSH PRIVILEGES; 
+client.cnf
+在[client]字段里加入
+default-character-set=utf8
+server.cnf
+在[mysqld]字段里加入
+character-set-server=utf8
+mysql>use mydb
+mysql>alter database mydb character set utf-8;

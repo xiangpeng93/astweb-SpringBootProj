@@ -36,12 +36,11 @@ public class ActiveManger {
     @RequestMapping(value = "/ActiveAdd",method = RequestMethod.GET)
     public int activeAdd(HttpServletRequest request,HttpServletResponse response)throws Exception{
         _addResponseHead(response);
-        String activeHead=  new String(request.getParameter("activeHead").getBytes("ISO-8859-1"),"GBK") ;
+        String activeHead= request.getParameter("activeHead");
         String activeBody=request.getParameter("activeBody");
         String activeAuthor=request.getParameter("activeAuthor");
         int activeUserCount=Integer.parseInt(request.getParameter("activeUserCount") == null ? "0" : request.getParameter("activeUserCount"));
         int activeCount=Integer.parseInt(request.getParameter("activeCount") == null ? "1" : request.getParameter("activeCount"));
-        PrintlnLog("Info: "+"中文测试");
         PrintlnLog("Info: "+"activeHead "+activeHead);
         PrintlnLog("Info: "+"activeBody "+activeBody);
         PrintlnLog("Info: "+"activeAuthor "+activeAuthor);
