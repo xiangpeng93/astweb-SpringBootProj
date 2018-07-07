@@ -33,8 +33,8 @@ public class UploadPic {
         public List<String> data;
     };
     String LoaclUrl = "*";
-    String FileDir = "/usr/picData/";
-    String PicUrl = "http://fumaker.tech:8081/";
+    String FileDir = "/usr/share/nginx/html/";
+    String PicUrl = "http://funmaker.tech:8080/";
     @RequestMapping(value = "/uploadPic",method = RequestMethod.POST)
     public picData uploadPic(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", LoaclUrl);
