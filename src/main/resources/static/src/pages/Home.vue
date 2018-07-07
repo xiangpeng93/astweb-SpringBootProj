@@ -52,7 +52,7 @@
             </div>
 
 
-            <div style="margin-top: 10px" class="center-block text-center">
+            <div style="margin-top: 10px" class="container text-center">
                 <div class="row">
                     <div class="col-lg-4">
                         <img class="img-circle" src="img/streamHead.jpg" width="140" height="140">
