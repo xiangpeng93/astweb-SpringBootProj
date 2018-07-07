@@ -54,15 +54,18 @@ public class ActiveManger {
         active.activeUserCount = activeUserCount;
         active.activeCount = activeCount;
         try{
-            nRet = _checkActiveInfoExist(active);
-            if(nRet == ACTIVE_ADD_SUCCESS )
+            if (request.getParameter("id") != "" )
             {
-                m_activeMapper.insert(active);
-                nRet = ACTIVE_ADD_SUCCESS;
+                nRet = ActiveMod(request,response);
             }
             else
             {
-                nRet = ActiveMod(request,response);
+                nRet = _checkActiveInfoExist(active);
+                if (nRet == ACTIVE_ADD_SUCCESS )
+                {
+                    m_activeMapper.insert(active);
+                    nRet = ACTIVE_ADD_SUCCESS;
+                }
             }
         }
         catch (Exception e){
