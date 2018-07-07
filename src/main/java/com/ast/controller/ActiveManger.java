@@ -36,7 +36,7 @@ public class ActiveManger {
     @RequestMapping(value = "/ActiveAdd",method = RequestMethod.GET)
     public int activeAdd(HttpServletRequest request,HttpServletResponse response)throws Exception{
         _addResponseHead(response);
-        String activeHead=request.getParameter("activeHead");
+        String activeHead=  new String(request.getParameter("activeHead").getBytes("ISO-8859-1"),"UTF-8") ;
         String activeBody=request.getParameter("activeBody");
         String activeAuthor=request.getParameter("activeAuthor");
         int activeUserCount=Integer.parseInt(request.getParameter("activeUserCount") == null ? "0" : request.getParameter("activeUserCount"));
