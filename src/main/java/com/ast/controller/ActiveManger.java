@@ -33,7 +33,7 @@ public class ActiveManger {
     * ActiveAdd Test Url
     * http://127.0.0.1:8080/ActiveAdd?activeHead=testName&activeBody=12345&activeAuthor=xp&activeUserCount=20&activeBrowersCount=0
     * */
-    @RequestMapping(value = "/ActiveAdd",method = RequestMethod.GET)
+    @RequestMapping(value = "/ActiveAdd",method = RequestMethod.GET,produces="text/plain;charset=UTF-8")
     public int activeAdd(HttpServletRequest request,HttpServletResponse response)throws Exception{
         _addResponseHead(response);
         String activeHead=request.getParameter("activeHead");
