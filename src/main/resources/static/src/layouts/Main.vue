@@ -2,7 +2,7 @@
 <template>
     <div id="mainDiv">
         <div style="height: 10vh;">
-            <nav style="margin-bottom: 5px;" name="nav" class="nav navbar navbar-inverse navbar-static-top">
+            <nav name="nav" class="nav navbar navbar-inverse navbar-static-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -12,8 +12,8 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" style="padding-left:30px;padding-right:30px;" href="/">
-                            <b class="big" style="color: yellow">AST Space </b><span class="small"> For Maker</span>
+                        <a class="navbar-brand" style="padding-left:15px;padding-right:30px;" href="/">
+                            <b class="big" style="color: yellow">AST Space </b><span class="small" style="color:white"> For Maker</span>
                         </a>
                     </div>
                     <div class="collapse navbar-collapse" id="targetNav">
@@ -21,7 +21,11 @@
                             <v-link href="/">主页 <span class="sr-only">(current)</span></v-link>
                             <v-link href="/add_active_page" v-bind:style="{display : isShow}">活动添加</v-link>
                             <v-link href="/manger_active_page" v-bind:style="{display : isShow}">活动管理</v-link>
-                            <v-link href="/show_active_page">活动展示</v-link>
+                            <v-link href="/show_community">AST社区</v-link>
+                            <v-link href="/show_active_page">日常活动</v-link>
+                            <v-link href="/show_steam_active">STEAM活动</v-link>
+                            <v-link href="/show_ast_class">AST课程</v-link>
+                            <v-link href="/show_active_result">活动作品</v-link>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -44,7 +48,7 @@
 
                 <div class="col-sm-4 col-sm-offset-1" style="padding-bottom: 20px">
                     <h4 style="color: yellow"><b>AST Space</b></h4>
-                    <p style="color: #fff">来自未来的创客学习模式</p>
+                    <p style="color: #fff"><br></p>
                     <div style="margin-top: 40px; color: #fff"><a href="/">关于我们</a> | <a href="/">加入我们</a></div>
                     <div style="margin-top: 10px"><p style="color: #ccc">反馈与建议：<a href="mailto:astspace_manger@163.com">astspace_manger@163.com</a>
                     </p></div>

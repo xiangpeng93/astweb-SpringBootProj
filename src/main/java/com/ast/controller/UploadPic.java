@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +55,9 @@ public class UploadPic {
             try {
                 System.out.println("Value = " + entry.getValue().getName());
                 String fileName = entry.getValue().getOriginalFilename();
+                Date day=new Date();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+                fileName = df.format(day) + fileName;
                 PicData.data.add(PicUrl + fileName);
                 FileOutputStream fos = new FileOutputStream(FileDir+ fileName);//打开FileOutStrean流
                 IOUtils.copy(entry.getValue().getInputStream(), fos);//将MultipartFile file转成二进制流并输入到FileOutStrean
