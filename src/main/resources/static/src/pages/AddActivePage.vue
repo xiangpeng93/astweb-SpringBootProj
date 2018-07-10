@@ -136,7 +136,13 @@
                     },
                     async: false
                 });
-                alert(htmlobj.responseText);
+                if(htmlobj.responseText == "0" || htmlobj.responseText == "1")
+                {
+                    alert("保存成功");
+                }
+                else {
+                    alert("保存失败")
+                }
             }
         }
     }

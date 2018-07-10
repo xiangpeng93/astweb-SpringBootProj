@@ -1,47 +1,49 @@
 <!--suppress ALL -->
 <template>
     <div id="mainDiv">
-        <nav style="display: block;" name="nav" class="nav navbar navbar-inverse navbar-static-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#targetNav" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" style="padding-left:30px;padding-right:30px;" href="/">
-                        <b class="big">AST Space</b><span class="small"> For Maker</span>
-                    </a>
+        <div style="height: 10vh;">
+            <nav style="margin-bottom: 5px;" name="nav" class="nav navbar navbar-inverse navbar-static-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#targetNav" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" style="padding-left:30px;padding-right:30px;" href="/">
+                            <b class="big" style="color: yellow">AST Space </b><span class="small"> For Maker</span>
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="targetNav">
+                        <ul class="nav navbar-nav">
+                            <v-link href="/">主页 <span class="sr-only">(current)</span></v-link>
+                            <v-link href="/add_active_page" v-bind:style="{display : isShow}">活动添加</v-link>
+                            <v-link href="/manger_active_page" v-bind:style="{display : isShow}">活动管理</v-link>
+                            <v-link href="/show_active_page">活动展示</v-link>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <v-link href="/login_page" v-bind:style="{display : isShowLogin}">登录</v-link>
+                            <li role="separator" class="divider"></li>
+                            <v-link href="/register_page" v-bind:style="{display : isShowLogin}">注册</v-link>
+                            <li v-bind:style="{display : isShowLogout}"><a @click="Logout()">退出</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="collapse navbar-collapse" id="targetNav">
-                    <ul class="nav navbar-nav">
-                        <v-link href="/">主页 <span class="sr-only">(current)</span></v-link>
-                        <v-link href="/add_active_page" v-bind:style="{display : isShow}">活动添加</v-link>
-                        <v-link href="/manger_active_page" v-bind:style="{display : isShow}">活动管理</v-link>
-                        <v-link href="/show_active_page">活动展示</v-link>
-                    </ul>
+            </nav>
+        </div>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <v-link href="/login_page" v-bind:style="{display : isShowLogin}">登录</v-link>
-                        <li role="separator" class="divider"></li>
-                        <v-link href="/register_page" v-bind:style="{display : isShowLogin}">注册</v-link>
-                        <li v-bind:style="{display : isShowLogout}"><a @click="Logout()">退出</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-
-        <div style="height:100%;width:100%;display: block;">
+        <div style="height:100%;width:100%;display: block;min-height: 100vh">
             <slot></slot>
         </div>
 
         <div class="container-fluid footer" style="z-index:10;">
             <div class="row" style="margin-bottom: 0px;background-color: #000000;padding-top:10px;">
+
                 <div class="col-sm-4 col-sm-offset-1" style="padding-bottom: 20px">
-                    <h4 style="color: #fff">AST Space</h4>
+                    <h4 style="color: yellow"><b>AST Space</b></h4>
                     <p style="color: #fff">来自未来的创客学习模式</p>
                     <div style="margin-top: 40px; color: #fff"><a href="/">关于我们</a> | <a href="/">加入我们</a></div>
                     <div style="margin-top: 10px"><p style="color: #ccc">反馈与建议：<a href="mailto:astspace_manger@163.com">astspace_manger@163.com</a>
@@ -54,7 +56,7 @@
                 </div>
                 <div class="col-sm-3" style="padding-bottom: 20px">
                     <div class="text-center">
-                        <img src="/img/astCode.jpg" width="150" height="150">
+                        <img src="/img/astCode.jpg" width="130" height="130">
                         <p style="margin-top: 10px; color: #ccc">扫一扫关注ASTSpace微信公众号</p></div>
                 </div>
             </div>

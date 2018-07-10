@@ -11,7 +11,7 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active" style="background-image: url(img/headNew.jpg);height: 500px;">
+                    <div class="item active" style="background-image: url(img/headNew.jpg);height: 90vh;-webkit-background-size:cover:">
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>创新与动力</h1>
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="item" style="background-image: url(img/headTech.jpg);height: 500px;">
+                    <div class="item" style="background-image: url(img/headTech.jpg);height: 90vh;-webkit-background-size:cover">
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>科技与技术</h1>
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="item" style="background-image: url(img/headBook.jpg);height: 500px;">
+                    <div class="item" style="background-image: url(img/headBook.jpg);height: 90vh;-webkit-background-size:cover">
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>生活与书籍</h1>
@@ -54,19 +54,19 @@
 
             <div style="margin-top: 10px" class="container text-center">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="min-height:50vh">
                         <img class="img-circle" src="img/streamHead.jpg" width="140" height="140">
-                        <h2>STREAM</h2>
+                        <h2>STEAM</h2>
                         <p><br></p>
                         <p><a class="btn btn-default" href="#" role="button">更多相关信息</a></p>
                     </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="min-height:50vh">
                         <img class="img-circle" src="img/classHead.jpg" alt="Generic placeholder image" width="140" height="140">
                         <h2>课程</h2>
                         <p><br></p>
                         <p><a class="btn btn-default" href="#" role="button">更多相关信息</a></p>
                     </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="min-height:50vh">
                         <img class="img-circle" src="img/resultHead.jpg" alt="Generic placeholder image" width="140" height="140">
                         <h2>作品集</h2>
                         <p><br></p>
