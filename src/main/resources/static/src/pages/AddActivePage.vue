@@ -8,10 +8,21 @@
 
             <div class="form-group">
                 <!-- Text input-->
-                <label for="active_name">活动标题</label>
+                <label for="active_name">标题</label>
                 <br/>
                 <input id="active_name" name="active_name" type="text" placeholder="输入标题" class="form-control">
             </div>
+            <div class="form-group">
+                <!-- Text input-->
+                <label>是否需要报名</label>
+                <br/>
+                <select id="is_need_register" name="is_need_register"
+                        class="form-control">
+                    <option>是</option>
+                    <option>否</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <!-- Text input-->
                 <label>活动场次数量</label>
@@ -24,6 +35,17 @@
                 <br/>
                 <input id="active_person_number" name="active_person_number" type="text" placeholder="输入人数"
                        class="form-control">
+            </div>
+            <div class="form-group">
+                <!-- Text input-->
+                <label>活动类别</label>
+                <br/>
+                <select id="active_type" name="active_type"
+                        class="form-control">
+                    <option>STEAM活动</option>
+                    <option>AST课程</option>
+                    <option>作品展示</option>
+                </select>
             </div>
 
         </div>
@@ -120,28 +142,32 @@
                 return "";
             },
             AddActiveInfo: function () {
-                var submitUrl = "http://" + this.host + "/ActiveAdd";
-                console.log(submitUrl);
-                var htmlobj = $.ajax({
-                    type: 'GET',
-                    url: submitUrl,
-                    dataType: 'json',
-                    data: {
-                        id: this.id,
-                        activeHead: $("#active_name").val(),
-                        activeAuthor: this.getCookie("userId"),
-                        activeUserCount: $("#active_number").val(),
-                        activeBody: editor2.txt.html(),
-                        activeCount: $("#active_number").val()
-                    },
-                    async: false
-                });
-                if(htmlobj.responseText == "0" || htmlobj.responseText == "1")
-                {
-                    alert("保存成功");
+                try {
+                    var submitUrl = "http://" + this.host + "/ActiveAdd";
+                    console.log(submitUrl);
+                    var htmlobj = $.ajax({
+                        type: 'GET',
+                        url: submitUrl,
+                        dataType: 'json',
+                        data: {
+                            id: this.id,
+                            activeHead: $("#active_name").val(),
+                            activeAuthor: this.getCookie("userId"),
+                            activeUserCount: $("#active_number").val(),
+                            activeBody: editor2.txt.html(),
+                            activeCount: $("#active_number").val()
+                        },
+                        async: false
+                    });
+                    if (htmlobj.responseText == "0" || htmlobj.responseText == "1") {
+                        alert("保存成功");
+                    }
+                    else {
+                        alert("保存失败")
+                    }
                 }
-                else {
-                    alert("保存失败")
+                catch (error) {
+                    console.log(error)
                 }
             }
         }
