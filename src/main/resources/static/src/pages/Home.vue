@@ -58,19 +58,19 @@
                         <img class="img-circle" src="img/streamHead.jpg" width="140" height="140">
                         <h2>STEAM</h2>
                         <p><br></p>
-                        <p><a class="btn btn-default" href="#" role="button">更多相关信息</a></p>
+                        <p><a class="btn btn-default" href="/show_steam_active" role="button">更多相关信息</a></p>
                     </div><!-- /.col-lg-4 -->
                     <div class="col-lg-4" style="min-height:50vh">
                         <img class="img-circle" src="img/classHead.jpg" alt="Generic placeholder image" width="140" height="140">
                         <h2>课程</h2>
                         <p><br></p>
-                        <p><a class="btn btn-default" href="#" role="button">更多相关信息</a></p>
+                        <p><a class="btn btn-default" href="/show_ast_class" role="button">更多相关信息</a></p>
                     </div><!-- /.col-lg-4 -->
                     <div class="col-lg-4" style="min-height:50vh">
                         <img class="img-circle" src="img/resultHead.jpg" alt="Generic placeholder image" width="140" height="140">
                         <h2>作品集</h2>
                         <p><br></p>
-                        <p><a class="btn btn-default" href="#" role="button">更多相关信息</a></p>
+                        <p><a class="btn btn-default" href="/show_active_result" role="button">更多相关信息</a></p>
                     </div><!-- /.col-lg-4 -->
                 </div>
 

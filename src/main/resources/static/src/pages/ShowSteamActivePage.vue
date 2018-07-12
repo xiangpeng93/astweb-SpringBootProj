@@ -9,11 +9,11 @@
 
 <script>
     import MainLayout from '../layouts/Main.vue'
-    import activeInfoCard from '../components/activeInfoCard.vue'
+    import steamTitleCard from '../components/steamTitleCard.vue'
     export default {
         components: {
             MainLayout,
-            'activeInfoCard': activeInfoCard
+            'steamTitleCard': steamTitleCard
         },
         data() {
             return {
@@ -50,7 +50,7 @@
                 var resultData = JSON.parse(htmlobj.responseText);
                 for (var i = 0; i < resultData.length; i++) {
                     this.items.push({
-                        'component': 'activeInfoCard',
+                        'component': 'steamTitleCard',
                         'headText': resultData[i].activeHead,
                         'bodyText': resultData[i].activeBody,
                         'imgUrl': this.getFirstImgUrl(resultData[i].activeBody),
