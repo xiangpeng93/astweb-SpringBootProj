@@ -22,7 +22,6 @@
                             <v-link href="/add_active_page" v-bind:style="{display : isShow}">活动添加</v-link>
                             <v-link href="/manger_active_page" v-bind:style="{display : isShow}">活动管理</v-link>
                             <v-link href="/show_community">AST社区</v-link>
-                            <v-link href="/show_active_page">日常活动</v-link>
                             <v-link href="/show_steam_active">STEAM活动</v-link>
                             <v-link href="/show_ast_class">AST课程</v-link>
                             <v-link href="/show_active_result">活动作品</v-link>
