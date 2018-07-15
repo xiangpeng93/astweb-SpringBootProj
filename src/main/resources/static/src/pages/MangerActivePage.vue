@@ -50,7 +50,6 @@
                     data: {activeBegin: '0', activeCount: '5'},
                     async: false
                 });
-                console.log(htmlobj.responseText);
                 var resultData = JSON.parse(htmlobj.responseText);
                 for (var i = 0; i < resultData.length; i++) {
                     this.items.push({
