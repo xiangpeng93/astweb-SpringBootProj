@@ -146,7 +146,7 @@
                     var submitUrl = "http://" + this.host + "/ActiveAdd";
                     console.log(submitUrl);
                     var htmlobj = $.ajax({
-                        type: 'GET',
+                        type: 'POST',
                         url: submitUrl,
                         dataType: 'json',
                         data: {

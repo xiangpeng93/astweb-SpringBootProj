@@ -34,7 +34,7 @@ public class ActiveManger {
     * ActiveAdd Test Url
     * http://127.0.0.1:8080/ActiveAdd?activeHead=testName&activeBody=12345&activeAuthor=xp&activeUserCount=20&activeBrowersCount=0
     * */
-    @RequestMapping(value = "/ActiveAdd", method = RequestMethod.GET)
+    @RequestMapping(value = "/ActiveAdd", method = RequestMethod.POST)
     public int activeAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
         _addResponseHead(response);
         String activeHead = request.getParameter("activeHead");
@@ -188,8 +188,6 @@ public class ActiveManger {
         response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
         response.setHeader("Access-Control-Allow-Credentials", "true");
     }
-
-    ;
 
     private int _checkActiveInfoExist(ActiveInfo info) throws Exception {
         ActiveInfo tActiveInfo = m_activeMapper.getActiveByActiveName(info.activeHead);
