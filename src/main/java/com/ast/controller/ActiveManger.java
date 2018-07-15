@@ -43,7 +43,7 @@ public class ActiveManger {
         int activeUserCount = Integer.parseInt(request.getParameter("activeUserCount") == null ? "0" : request.getParameter("activeUserCount"));
         int activeCount = Integer.parseInt(request.getParameter("activeCount") == null ? "1" : request.getParameter("activeCount"));
         PrintlnLog("Info: " + "activeHead " + activeHead);
-        PrintlnLog("Info: " + "activeBody " + activeBody);
+        //PrintlnLog("Info: " + "activeBody " + activeBody);
         PrintlnLog("Info: " + "activeAuthor " + activeAuthor);
         PrintlnLog("Info: " + "activeCount " + activeCount);
         PrintlnLog("Info: " + "activeUserCount " + activeUserCount);
@@ -159,7 +159,7 @@ public class ActiveManger {
         String activeHead = request.getParameter("activeHead");
         PrintlnLog("Info: " + "activeHead " + activeHead);
         String activeBody = request.getParameter("activeBody");
-        PrintlnLog("Info: " + "activeBody " + activeBody);
+        //PrintlnLog("Info: " + "activeBody " + activeBody);
         String activeAuthor = request.getParameter("activeAuthor");
         PrintlnLog("Info: " + "activeAuthor " + activeAuthor);
         int activeUserCount = Integer.parseInt(request.getParameter("activeUserCount") == "" ? "0" : request.getParameter("activeUserCount"));
