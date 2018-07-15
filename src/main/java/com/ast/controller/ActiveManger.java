@@ -150,7 +150,7 @@ public class ActiveManger {
    * ActiveMod Test Url
    * http://127.0.0.1:8080/ActiveMod?id=3&activeHead=testName&activeBody=12345&activeAuthor=xp&activeUserCount=20&activeBrowersCount=0
    * */
-    @RequestMapping(value = "/ActiveMod", method = RequestMethod.GET)
+    @RequestMapping(value = "/ActiveMod", method = RequestMethod.POST)
     public int ActiveMod(HttpServletRequest request, HttpServletResponse response) throws Exception {
         _addResponseHead(response);
         PrintlnLog(request.getParameter("id"));
