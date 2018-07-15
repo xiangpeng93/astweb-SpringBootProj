@@ -167,7 +167,7 @@
                     data: {id: this.GetQueryString("id")},
                     async: false
                 });
-                console.log(htmlobj.responseText);
+
                 var resultData = JSON.parse(htmlobj.responseText);
                 this.id = resultData.id;
                 this.body = resultData.activeBody;
