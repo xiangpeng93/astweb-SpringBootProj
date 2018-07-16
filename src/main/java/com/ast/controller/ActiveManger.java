@@ -97,7 +97,7 @@ public class ActiveManger {
     public ActiveInfo QueryActiveInfoById(HttpServletRequest request, HttpServletResponse response) throws Exception {
         _addResponseHead(response);
         int id = Integer.parseInt(request.getParameter("id"));
-        PrintlnLog("Info: " + "id " + id);
+        PrintlnLog("Info: " + "id " + id );
         try {
             ActiveInfo tActiveInfo = m_activeMapper.getActiveById(id);
             tActiveInfo.activeBrowersCount += 1;
@@ -138,8 +138,12 @@ public class ActiveManger {
         int activeCount = Integer.parseInt(request.getParameter("activeCount"));
         PrintlnLog("Info: " + "activeBegin " + activeBegin);
         PrintlnLog("Info: " + "activeCount " + activeCount);
+        long iStartTime = System.currentTimeMillis();
         try {
-            return m_activeMapper.getActiveByStartNumAndCount(activeBegin, activeCount);
+            List<ActiveInfo> lReturn =m_activeMapper.getActiveByStartNumAndCount(activeBegin, activeCount);
+            PrintlnLog("Info: " + "Cost time :  " + (System.currentTimeMillis() - iStartTime));
+
+            return lReturn;
         } catch (Exception e) {
             PrintlnLog("Error: " + e.toString());
         }
