@@ -66,6 +66,7 @@ public interface ActiveInfoMapper {
             @Result(property = "id", column = "id"),
             @Result(property = "activeCount", column = "activeCount"),
             @Result(property = "activeHead", column = "activeHead"),
+            @Result(property = "activeBody", column = "activeBody"),
             @Result(property = "activeAuthor", column = "activeAuthor"),
             @Result(property = "activeUserCount", column = "activeUserCount"),
             @Result(property = "activeBrowersCount", column = "activeBrowersCount"),

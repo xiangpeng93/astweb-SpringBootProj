@@ -90,7 +90,6 @@
                 this.id = this.GetQueryString("id")
                 var submitUrl = "http://" + this.host + "/QueryActiveInfoById";
                 var htmlobj = $.ajax({type: 'GET', url: submitUrl, data: {id: this.id}, async: false});
-                console.log(htmlobj.responseText);
                 var resultData = JSON.parse(htmlobj.responseText);
                 editor2.txt.html(resultData.activeBody);
                 $("#active_name").val(resultData.activeHead);
