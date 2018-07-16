@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : funmaker.tech
-Source Server Version : 50556
-Source Host           : 47.75.127.61:3306
+Source Server         : MySqlServer
+Source Server Version : 50544
+Source Host           : 10.67.129.123:3306
 Source Database       : ASTSpace
 
 Target Server Type    : MYSQL
-Target Server Version : 50556
+Target Server Version : 50544
 File Encoding         : 65001
 
-Date: 2018-07-07 15:59:12
+Date: 2018-07-16 20:24:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,8 +28,9 @@ CREATE TABLE `actives_info` (
   `activeUserCount` int(10) DEFAULT '0',
   `activeBrowersCount` int(10) DEFAULT '0',
   `activePublishDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `activeTypeName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for joins_info
@@ -48,7 +49,7 @@ CREATE TABLE `joins_info` (
   `otherInfo` varchar(255) DEFAULT NULL,
   `activeSession` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for users_info
@@ -67,4 +68,4 @@ CREATE TABLE `users_info` (
   `userPrivilege` varchar(255) DEFAULT NULL,
   `otherInfo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;

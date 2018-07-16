@@ -40,6 +40,7 @@ public class ActiveManger {
         String activeHead = request.getParameter("activeHead");
         String activeBody = request.getParameter("activeBody");
         String activeAuthor = request.getParameter("activeAuthor");
+        String activeTypeName = request.getParameter("activeTypeName");
         int activeUserCount = Integer.parseInt(request.getParameter("activeUserCount") == null ? "0" : request.getParameter("activeUserCount"));
         int activeCount = Integer.parseInt(request.getParameter("activeCount") == null ? "1" : request.getParameter("activeCount"));
         PrintlnLog("Info: " + "activeHead " + activeHead);
@@ -54,6 +55,7 @@ public class ActiveManger {
         active.activeAuthor = activeAuthor;
         active.activeUserCount = activeUserCount;
         active.activeCount = activeCount;
+        active.activeTypeName = activeTypeName;
         try {
             if (request.getParameter("id") != "") {
                 nRet = ActiveMod(request, response);
@@ -61,7 +63,7 @@ public class ActiveManger {
                 nRet = _checkActiveInfoExist(active);
                 if (nRet == ACTIVE_ADD_SUCCESS) {
                     m_activeMapper.insert(active);
-                    nRet = ACTIVE_ADD_SUCCESS;
+                    nRet = m_activeMapper.getActiveByActiveName(active.activeHead).id;
                 }
             }
         } catch (Exception e) {
@@ -138,11 +140,13 @@ public class ActiveManger {
         _addResponseHead(response);
         int activeBegin = Integer.parseInt(request.getParameter("activeBegin"));
         int activeCount = Integer.parseInt(request.getParameter("activeCount"));
+        String activeTypeName = request.getParameter("activeTypeName");
+
         PrintlnLog("Info: " + "activeBegin " + activeBegin);
         PrintlnLog("Info: " + "activeCount " + activeCount);
         long iStartTime = System.currentTimeMillis();
         try {
-            List<ActiveInfo> lReturn =m_activeMapper.getActiveByStartNumAndCount(activeBegin, activeCount);
+            List<ActiveInfo> lReturn =m_activeMapper.getActiveByStartNumAndCount(activeBegin, activeCount, activeTypeName);
             PrintlnLog("Info: " + "QueryActivesInfo Cost time :  " + (System.currentTimeMillis() - iStartTime));
 
             return lReturn;
@@ -172,6 +176,8 @@ public class ActiveManger {
         PrintlnLog("Info: " + "activeUserCount " + activeUserCount);
         int activeCount = Integer.parseInt(request.getParameter("activeCount") == "" ? "1" : request.getParameter("activeCount"));
         PrintlnLog("Info: " + "activeCount " + activeCount);
+        String activeTypeName = request.getParameter("activeTypeName");
+
         int nRet = ACTIVE_MOD_FAILED;
         ActiveInfo active = new ActiveInfo();
         active.id = id;
@@ -180,6 +186,7 @@ public class ActiveManger {
         active.activeAuthor = activeAuthor;
         active.activeUserCount = activeUserCount;
         active.activeCount = activeCount;
+        active.activeTypeName = activeTypeName;
         try {
             nRet = m_activeMapper.update(active);
         } catch (Exception e) {

@@ -6,14 +6,14 @@
             <br>
             <span class="pull-left" style=" font-family: Helvetica;">
                 创建时间 ： {{ time }}
-            </span>            <br>
-            <span class="pull-left">阅读次数 ： {{ count }}</span>            <br>
-            <span class="pull-left">发布者 ： {{ auther }}</span>            <br>
+            </span> <br>
+            <span class="pull-left">阅读次数 ： {{ count }}</span> <br>
+            <span class="pull-left">发布者 ： {{ auther }}</span> <br>
             <hr>
             <div style="white-space: pre-wrap;word-wrap: break-word;">
                 <span v-html="body"></span>
             </div>
-            <div class="text-right">
+            <div class="text-right" v-bind:style="{display : isShow}">
                 <button class="btn btn-primary" style="margin:5px;" @click="ActiveRegister()">报名请点击</button>
             </div>
 
@@ -57,7 +57,7 @@
                                         </blockquote>
                                     </div>
                                 </form>
-                                <div class="modal-footer">
+                                <div class="modal-footer" >
                                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                                     <button type="button" id="active_push_btn" class="btn btn-primary"
                                             @click="RegisterActive()">提交报名信息
@@ -91,7 +91,8 @@
                 peopleNumber: 100,
                 registerNum: 100,
                 required: true,
-                host:window.location.host
+                host: window.location.host,
+                isShow: "none"
             }
         },
         methods: {
@@ -128,18 +129,15 @@
                         async: false
                     });
                     console.log(htmlobj.responseText);
-                    if (htmlobj.responseText == "1")
-                    {
+                    if (htmlobj.responseText == "1") {
                         alert("报名成功！");
-                        window.location = "/active?" + "id="+ this.id;
+                        window.location = "/active?" + "id=" + this.id;
                     }
-                    else if (htmlobj.responseText == "-2")
-                    {
+                    else if (htmlobj.responseText == "-2") {
                         alert("你已经报名，请勿重复报名！");
-                        window.location = "/active?" + "id="+ this.id;
+                        window.location = "/active?" + "id=" + this.id;
                     }
-                    else
-                    {
+                    else {
                         alert("报名失败，请联系微信公众号客服！");
                     }
                 }
@@ -149,7 +147,7 @@
                 var result = $.ajax({
                     type: 'GET',
                     url: queryRegsiterNumber,
-                    data: {activeId: this.id,activeSession: $("#activeSession").val()},
+                    data: {activeId: this.id, activeSession: $("#activeSession").val()},
                     async: false
                 });
                 console.log(result.responseText);
@@ -159,7 +157,7 @@
         },
         mounted()
         {
-            var submitUrl = "http://" + this.host +  "/QueryActiveInfoById";
+            var submitUrl = "http://" + this.host + "/QueryActiveInfoById";
             try {
                 var htmlobj = $.ajax({
                     type: 'GET',
@@ -176,11 +174,15 @@
                 this.count = resultData.activeBrowersCount;
                 this.auther = resultData.activeAuthor;
                 var number = resultData.activeCount;
+                console.log(number)
                 for (var i = 0; i < number; i++) {
                     $('#activeSession').append("<option> " + Number(i + 1) + "</option>");
                 }
                 this.registerNum = resultData.activeUserCount;
                 this.QueryRegisterNumer();
+                if (number != 0) {
+                    this.isShow = "block";
+                }
             }
             catch (error) {
                 console.log(error);

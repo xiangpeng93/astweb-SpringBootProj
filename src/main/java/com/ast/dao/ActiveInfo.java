@@ -12,4 +12,5 @@ public class ActiveInfo {
     public int activeBrowersCount;
     public String activePublishDate;
     public int activeCount;
+    public String activeTypeName;
 }

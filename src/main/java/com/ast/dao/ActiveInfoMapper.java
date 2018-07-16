@@ -17,6 +17,7 @@ public interface ActiveInfoMapper {
             @Result(property = "activeAuthor", column = "activeAuthor"),
             @Result(property = "activeUserCount", column = "activeUserCount"),
             @Result(property = "activeBrowersCount", column = "activeBrowersCount"),
+            @Result(property = "activeTypeName", column = "activeTypeName"),
             @Result(property = "activePublishDate", column = "activePublishDate")
     })
     List<ActiveInfo> getAllActivesInfo();
@@ -30,6 +31,7 @@ public interface ActiveInfoMapper {
             @Result(property = "activeAuthor", column = "activeAuthor"),
             @Result(property = "activeUserCount", column = "activeUserCount"),
             @Result(property = "activeBrowersCount", column = "activeBrowersCount"),
+            @Result(property = "activeTypeName", column = "activeTypeName"),
             @Result(property = "activePublishDate", column = "activePublishDate")
     })
     ActiveInfo getActiveByHead(String activeHead);
@@ -43,6 +45,7 @@ public interface ActiveInfoMapper {
             @Result(property = "activeAuthor", column = "activeAuthor"),
             @Result(property = "activeUserCount", column = "activeUserCount"),
             @Result(property = "activeBrowersCount", column = "activeBrowersCount"),
+            @Result(property = "activeTypeName", column = "activeTypeName"),
             @Result(property = "activePublishDate", column = "activePublishDate")
     })
     ActiveInfo getActiveById(int id);
@@ -56,12 +59,13 @@ public interface ActiveInfoMapper {
             @Result(property = "activeAuthor", column = "activeAuthor"),
             @Result(property = "activeUserCount", column = "activeUserCount"),
             @Result(property = "activeBrowersCount", column = "activeBrowersCount"),
+            @Result(property = "activeTypeName", column = "activeTypeName"),
             @Result(property = "activePublishDate", column = "activePublishDate")
     })
     ActiveInfo getActiveByActiveName(String name);
 
 
-    @Select("select * from actives_info ORDER BY id DESC LIMIT #{param1},#{param2}")
+    @Select("select * from actives_info where activeTypeName=#{param3} ORDER BY id DESC LIMIT #{param1},#{param2}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "activeCount", column = "activeCount"),
@@ -70,9 +74,10 @@ public interface ActiveInfoMapper {
             @Result(property = "activeAuthor", column = "activeAuthor"),
             @Result(property = "activeUserCount", column = "activeUserCount"),
             @Result(property = "activeBrowersCount", column = "activeBrowersCount"),
+            @Result(property = "activeTypeName", column = "activeTypeName"),
             @Result(property = "activePublishDate", column = "activePublishDate")
     })
-    List<ActiveInfo> getActiveByStartNumAndCount(int activeBegin,int activeCount);
+    List<ActiveInfo> getActiveByStartNumAndCount(int activeBegin,int activeCount,String activeTypeName);
 
     @Select("SELECT activeUserCount FROM actives_info WHERE id=#{param1}")
     @Results({
@@ -80,10 +85,10 @@ public interface ActiveInfoMapper {
     })
     ActiveInfo getActiveUsercountById(int id);
 
-    @Insert("INSERT INTO actives_info(activeHead,activeCount,activeBody,activeAuthor,activeUserCount) VALUES( #{activeHead}, #{activeCount}, #{activeBody}, #{activeAuthor},#{activeUserCount})")
+    @Insert("INSERT INTO actives_info(activeHead,activeCount,activeBody,activeAuthor,activeUserCount,activeTypeName) VALUES( #{activeHead}, #{activeCount}, #{activeBody}, #{activeAuthor},#{activeUserCount},#{activeTypeName})")
     int insert(ActiveInfo user);
 
-    @Update("UPDATE actives_info SET activeHead=#{activeHead},activeCount=#{activeCount},activeBody=#{activeBody},activeAuthor=#{activeAuthor},activeUserCount=#{activeUserCount} WHERE id =#{id} or activeHead =#{activeHead} ")
+    @Update("UPDATE actives_info SET activeHead=#{activeHead},activeCount=#{activeCount},activeBody=#{activeBody},activeAuthor=#{activeAuthor},activeUserCount=#{activeUserCount},activeTypeName=#{activeTypeName} WHERE id =#{id} or activeHead =#{activeHead} ")
     int update(ActiveInfo user);
 
     @Delete("DELETE FROM actives_info WHERE id = #{param1}")

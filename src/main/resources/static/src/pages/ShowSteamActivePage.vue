@@ -43,7 +43,7 @@
                 var htmlobj = $.ajax({
                     type: 'GET',
                     url: submitUrl,
-                    data: {activeBegin: '0', activeCount: '5'},
+                    data: {activeBegin: '0', activeCount: '5',activeTypeName:"STEAM活动"},
                     async: false
                 });
 

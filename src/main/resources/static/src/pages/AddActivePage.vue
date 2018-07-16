@@ -17,19 +17,19 @@
                 <label>是否需要报名</label>
                 <br/>
                 <select id="is_need_register" name="is_need_register"
-                        class="form-control">
-                    <option>是</option>
+                        class="form-control" @change="chooseNeedRegister">
                     <option>否</option>
+                    <option>是</option>
                 </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" v-bind:style="{display : isShow}">
                 <!-- Text input-->
                 <label>活动场次数量</label>
                 <br/>
                 <input id="active_number" name="active_number" type="text" placeholder="输入数量" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group" v-bind:style="{display : isShow}">
                 <!-- Text input-->
                 <label>每场人数限制</label>
                 <br/>
@@ -81,23 +81,48 @@
         {
             return {
                 host: window.location.host,
-                id: 0
+                id: 0,
+                isShow: "none",
+                activeCount: 0,
+                activeUserCount: 0
             }
         },
         mounted(){
             this.$nextTick(function () {
+                this.chooseNeedRegister();
                 this.createEdit();
                 this.id = this.GetQueryString("id")
-                var submitUrl = "http://" + this.host + "/QueryActiveInfoById";
-                var htmlobj = $.ajax({type: 'GET', url: submitUrl, data: {id: this.id}, async: false});
-                var resultData = JSON.parse(htmlobj.responseText);
-                editor2.txt.html(resultData.activeBody);
-                $("#active_name").val(resultData.activeHead);
-                $("#active_number").val(resultData.activeUserCount);
-                $("#active_person_number").val(resultData.activeUserCount);
+                if (this.id != "") {
+                    var submitUrl = "http://" + this.host + "/QueryActiveInfoById";
+                    var htmlobj = $.ajax({type: 'GET', url: submitUrl, data: {id: this.id}, async: false});
+                    var resultData = JSON.parse(htmlobj.responseText);
+                    editor2.txt.html(resultData.activeBody);
+                    $("#active_name").val(resultData.activeHead);
+                    $("#active_type").val(resultData.activeTypeName);
+                    $("#active_number").val(resultData.activeCount);
+                    this.activeCount = resultData.activeCount;
+                    $("#active_person_number").val(resultData.activeUserCount);
+                    this.activeUserCount = resultData.activeUserCount;
+                    if ($("#active_number").val() != "0") {
+                        $("#is_need_register").val("是");
+                        this.chooseNeedRegister();
+                    }
+                }
             })
         },
         methods: {
+            chooseNeedRegister: function () {
+                if ($("#is_need_register").val() == "否") {
+                    $("#active_number").val(0);
+                    $("#active_person_number").val(0);
+                    this.isShow = "none";
+                }
+                else {
+                    this.isShow = "block";
+                    $("#active_number").val(this.activeCount);
+                    $("#active_person_number").val(this.activeUserCount);
+                }
+            },
             GetQueryString: function (name) {
                 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
                 var r = window.location.search.substr(1).match(reg);  //获取url中"?"符后的字符串并正则匹配
@@ -118,7 +143,6 @@
                 editor2.create()
                 editor2.customConfig.debug = location.href.indexOf('wangeditor_debug_mode=1') > 0
             },
-
             getEditText: function () {
                 console.log("get edit");
                 console.log(editor2.txt.html());
@@ -152,13 +176,15 @@
                             id: this.id,
                             activeHead: $("#active_name").val(),
                             activeAuthor: this.getCookie("userId"),
-                            activeUserCount: $("#active_number").val(),
+                            activeUserCount: $("#active_person_number").val(),
                             activeBody: editor2.txt.html(),
-                            activeCount: $("#active_number").val()
+                            activeCount: $("#active_number").val(),
+                            activeTypeName: $("#active_type").val()
                         },
                         async: false
                     });
-                    if (htmlobj.responseText == "0" || htmlobj.responseText == "1") {
+                    if (htmlobj.responseText != "-1" || htmlobj.responseText != "-2") {
+                        this.id = htmlobj.responseText;
                         alert("保存成功");
                     }
                     else {
