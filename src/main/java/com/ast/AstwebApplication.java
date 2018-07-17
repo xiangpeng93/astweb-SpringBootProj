@@ -58,17 +58,15 @@ public class AstwebApplication extends SpringBootServletInitializer {
         public String getErrorPath() {
             return "/";
         }
-        private final ErrorProperties errorProperties = null;
-
+        private final ErrorProperties errorProperties = new ErrorProperties();
         @RequestMapping(
                 produces = {"text/html"}
         )
         public ModelAndView errorHtml(HttpServletRequest request, HttpServletResponse response) {
-            HttpStatus status = this.getStatus(request);
+            HttpStatus status = HttpStatus.OK;
             Map model = Collections.unmodifiableMap(this.getErrorAttributes(request, this.isIncludeStackTrace(request, MediaType.TEXT_HTML)));
-            response.setStatus(200);
-            ModelAndView modelAndView = this.resolveErrorView(request, response, status, model);
-            return modelAndView != null?modelAndView:new ModelAndView("error", model);
+            response.setStatus(status.value());
+            return new ModelAndView("/", model);
         }
 
         @RequestMapping
@@ -85,6 +83,7 @@ public class AstwebApplication extends SpringBootServletInitializer {
         }
 
         protected ErrorProperties getErrorProperties() {
+            errorProperties.setPath("/");
             return this.errorProperties;
         }
 
