@@ -37,12 +37,12 @@ public class AstwebApplication extends SpringBootServletInitializer {
         }
         @Override
         public String getErrorPath() {
-            return ERROR_PATH;
+            return "/";
         }
     }
 
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 		SpringApplication.run(AstwebApplication.class, args);
 	}
 }

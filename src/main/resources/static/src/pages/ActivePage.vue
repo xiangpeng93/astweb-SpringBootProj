@@ -6,9 +6,12 @@
             <br>
             <span class="pull-left" style=" font-family: Helvetica;">
                 创建时间 ： {{ time }}
-            </span> <br>
-            <span class="pull-left">阅读次数 ： {{ count }}</span> <br>
-            <span class="pull-left">发布者 ： {{ auther }}</span> <br>
+            </span>
+            <br>
+            <span class="pull-left">阅读次数 ： {{ count }}</span>
+            <br>
+            <span class="pull-left">发布者 ： {{ auther }}</span>
+            <br>
             <hr>
             <div style="white-space: pre-wrap;word-wrap: break-word;">
                 <span v-html="body"></span>
