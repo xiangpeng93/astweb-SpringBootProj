@@ -41,6 +41,7 @@ public class AstwebApplication extends SpringBootServletInitializer {
 	}
 
     @Controller
+    @RequestMapping({"${server.error.path:${error.path:/error}}"})
     public class MainsiteErrorController extends AbstractErrorController {
         private static final String ERROR_PATH = "/error";
 
