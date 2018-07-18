@@ -183,7 +183,7 @@
                         },
                         async: false
                     });
-                    if (htmlobj.responseText != "-1" || htmlobj.responseText != "-2") {
+                    if (htmlobj.responseText != "-1" && htmlobj.responseText != "-2") {
                         this.id = htmlobj.responseText;
                         alert("保存成功");
                     }

@@ -57,7 +57,7 @@ public class ActiveManger {
         active.activeCount = activeCount;
         active.activeTypeName = activeTypeName;
         try {
-            if (request.getParameter("id") != "") {
+            if (request.getParameter("id") != null &&  request.getParameter("id") != "") {
                 nRet = ActiveMod(request, response);
             } else {
                 nRet = _checkActiveInfoExist(active);
@@ -189,6 +189,7 @@ public class ActiveManger {
         active.activeTypeName = activeTypeName;
         try {
             nRet = m_activeMapper.update(active);
+            nRet = id;
         } catch (Exception e) {
             PrintlnLog("Error: " + e.toString());
         }
