@@ -23,7 +23,7 @@
             <div>
                 <div id="editDivHead">
                 </div>
-                <div name="community_body" id="editDivBody" style="height:500px;margin:5px;">
+                <div name="community_body" id="editDivBody" style="height:500px;margin:5px;width: 100%">
                 </div>
             </div>
             <hr>
@@ -79,10 +79,33 @@
             })
         },
         methods: {
+            isPC:function(){
+                var sUserAgent = navigator.userAgent.toLowerCase();
+                var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+                var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+                var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+                var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+                var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+                var bIsAndroid = sUserAgent.match(/android/i) == "android";
+                var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+                var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+                if((bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM))
+                {
+                    return false;
+                }
+                return true;
+            },
             createEdit: function () {
                 editor2.customConfig.uploadImgServer = 'http://' + this.host + '/uploadPic'  // 上传图片到服务器
                 editor2.customConfig.zIndex = 1
                 editor2.customConfig.uploadImgTimeout = 60000
+                // 自定义菜单配置
+               if(!this.isPC()) {
+                   editor2.customConfig.menus = [
+                       'emoticon',  // 表情
+                       'image',  // 插入图片
+                   ]
+               }
                 editor2.create()
                 editor2.customConfig.debug = location.href.indexOf('wangeditor_debug_mode=1') > 0
             },
