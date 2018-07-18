@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50544
 File Encoding         : 65001
 
-Date: 2018-07-16 20:24:00
+Date: 2018-07-18 11:06:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,6 +31,34 @@ CREATE TABLE `actives_info` (
   `activeTypeName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for comments_info
+-- ----------------------------
+DROP TABLE IF EXISTS `comments_info`;
+CREATE TABLE `comments_info` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `communityId` int(11) DEFAULT NULL,
+  `authorName` varchar(255) DEFAULT NULL,
+  `publishDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for community_info
+-- ----------------------------
+DROP TABLE IF EXISTS `community_info`;
+CREATE TABLE `community_info` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `communityHead` longtext,
+  `communityBody` longtext,
+  `communityAuthor` varchar(255) DEFAULT NULL,
+  `communityBrowersCount` int(10) DEFAULT '0',
+  `communityPublishDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `communityGroup` varchar(255) DEFAULT NULL,
+  `communityPrivilege` int(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for joins_info
