@@ -19,7 +19,7 @@
                         <span v-html="body"></span>
                     </div>
                 </div>
-                <div  class="media" v-for="item in items">
+                <div class="media" v-for="item in items">
                 <span class="media-head">
                     <h4>{{item.author}}：</h4>
                 </span>
@@ -29,8 +29,17 @@
                 </div>
             </div>
             <div class="row" >
-                <div class="container col-lg-10" style=" margin-top: 5px;"><input type="text" class="form-control" placeholder="请输入.." v-model="commentMsg" value="commentMsg"></div>
-                <div class="col-lg-2" style=" margin-top: 5px;"><button class="btn btn-info pull-right" @click="publishComment()" >发布评论</button></div>
+                <div class="container col-lg-10" style=" margin-top: 5px;">
+                    <div>
+                        <div id="editDivHead">
+                        </div>
+                        <div name="community_body" id="editDivBody" style="height:100px; margin:3px;width: 100% ;background-color: #ded7d7">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2" style=" margin-top: 5px;">
+                    <button class="btn btn-info pull-right" @click="publishComment()">发布评论</button>
+                </div>
             </div>
         </div>
 
@@ -39,7 +48,9 @@
 
 <script>
     import MainLayout from '../layouts/Main.vue'
+    import wangEdit from '../../wang/wangEditor.js';
 
+    var editor2 = new wangEdit('#editDivHead', '#editDivBody');
     export default {
         components: {
             MainLayout
@@ -51,14 +62,32 @@
                 body: "Test",
                 author: "test",
                 host: window.location.host,
-                items:[],
-                commentMsg:""
+                items: [],
+                commentMsg: ""
             }
         },
         methods: {
-            publishComment:function () {
+            publishComment: function () {
                 if (this.getCookie("userId") != "") {
-                    if (this.commentMsg != "") {
+                    this.commentMsg = editor2.txt.html()
+                    if (editor2.txt.text() != "") {
+                        try {
+                            var submitUrl = "http://" + this.host + "/CommentAdd";
+                            var htmlobj = $.ajax({
+                                type: 'POST',
+                                url: submitUrl,
+                                dataType: 'json',
+                                data: {
+                                    communityId: this.id,
+                                    authorName: this.getCookie("userId"),
+                                    commentBody:this.commentMsg
+                                },
+                                async: false
+                            });
+                        }
+                        catch (error) {
+                            console.log(error)
+                        }
                         this.items.push(
                             {
                                 author: this.getCookie("userId"),
@@ -67,6 +96,7 @@
                         )
                     }
                     this.commentMsg = '';
+                    editor2.txt.html("");
                 }
                 else {
                     alert("请先登录！");
@@ -99,9 +129,22 @@
                 r = null;
                 return context == null || context == "" || context == "undefined" ? "" : context;
             },
+            createEdit: function () {
+                editor2.customConfig.uploadImgServer = 'http://' + this.host + '/uploadPic'  // 上传图片到服务器
+                editor2.customConfig.zIndex = 1
+                editor2.customConfig.uploadImgTimeout = 60000
+                // 自定义菜单配置
+                editor2.customConfig.menus = [
+                    'image',  // 插入图片
+                ]
+                editor2.create()
+                editor2.customConfig.debug = location.href.indexOf('wangeditor_debug_mode=1') > 0
+
+            },
         },
         mounted()
         {
+            this.createEdit()
             var submitUrl = "http://" + this.host + "/QueryCommunityInfoById";
             try {
                 var htmlobj = $.ajax({
