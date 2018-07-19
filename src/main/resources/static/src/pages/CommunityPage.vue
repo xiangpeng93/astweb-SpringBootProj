@@ -109,7 +109,6 @@
             getCookie: function (cname) {
                 try {
                     var name = cname + "=";
-
                     var ca = document.cookie.split(';');
                     for (var i = 0; i < ca.length; i++) {
                         var c = ca[i];
