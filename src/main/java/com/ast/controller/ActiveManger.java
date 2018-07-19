@@ -103,7 +103,7 @@ public class ActiveManger {
         long iStartTime = System.currentTimeMillis();
         try {
             ActiveInfo tActiveInfo = m_activeMapper.getActiveById(id);
-            tActiveInfo.activeBrowersCount += 1;
+            tActiveInfo.activeBrowersCount = tActiveInfo.activeBrowersCount + 1;
             m_activeMapper.update(tActiveInfo);
             PrintlnLog("Info: " + "QueryActiveInfoById Cost time :  " + (System.currentTimeMillis() - iStartTime));
             return tActiveInfo;

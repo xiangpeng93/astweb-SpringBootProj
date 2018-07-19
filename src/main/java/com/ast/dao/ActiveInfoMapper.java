@@ -88,7 +88,7 @@ public interface ActiveInfoMapper {
     @Insert("INSERT INTO actives_info(activeHead,activeCount,activeBody,activeAuthor,activeUserCount,activeTypeName) VALUES( #{activeHead}, #{activeCount}, #{activeBody}, #{activeAuthor},#{activeUserCount},#{activeTypeName})")
     int insert(ActiveInfo user);
 
-    @Update("UPDATE actives_info SET activeHead=#{activeHead},activeCount=#{activeCount},activeBody=#{activeBody},activeAuthor=#{activeAuthor},activeUserCount=#{activeUserCount},activeTypeName=#{activeTypeName} WHERE id =#{id} or activeHead =#{activeHead} ")
+    @Update("UPDATE actives_info SET activeHead=#{activeHead},activeCount=#{activeCount},activeBody=#{activeBody},activeAuthor=#{activeAuthor},activeUserCount=#{activeUserCount},activeTypeName=#{activeTypeName} ,activeBrowersCount=#{activeBrowersCount} WHERE id =#{id} or activeHead =#{activeHead} ")
     int update(ActiveInfo user);
 
     @Delete("DELETE FROM actives_info WHERE id = #{param1}")
