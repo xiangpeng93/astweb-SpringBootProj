@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50544
 File Encoding         : 65001
 
-Date: 2018-07-18 11:06:53
+Date: 2018-07-19 09:40:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,8 +41,10 @@ CREATE TABLE `comments_info` (
   `communityId` int(11) DEFAULT NULL,
   `authorName` varchar(255) DEFAULT NULL,
   `publishDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `commentBody` longtext,
+  `commentFavour` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for community_info

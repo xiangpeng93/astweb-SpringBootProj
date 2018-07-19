@@ -159,6 +159,21 @@
                 this.head = resultData.communityHead;
                 this.time = resultData.communityPublishDate;
                 this.author = resultData.communityAuthor;
+
+                var submitUrl = "http://" + this.host + "/QueryCommentInfoByCommunityId";
+                var htmlobj = $.ajax({
+                    type: 'GET',
+                    url: submitUrl,
+                    data: {communityId: this.id},
+                    async: false
+                });
+                var resultData = JSON.parse(htmlobj.responseText);
+                for (var i = 0; i < resultData.length; i++) {
+                    this.items.push({
+                        author: resultData.authorName,
+                        body: resultData.commentBody
+                    });
+                }
             }
             catch (error) {
                 console.log(error);
