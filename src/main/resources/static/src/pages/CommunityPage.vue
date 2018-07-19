@@ -167,11 +167,12 @@
                     data: {communityId: this.id},
                     async: false
                 });
+
                 var resultData = JSON.parse(htmlobj.responseText);
                 for (var i = 0; i < resultData.length; i++) {
                     this.items.push({
-                        author: resultData.authorName,
-                        body: resultData.commentBody
+                        author: resultData[i].authorName,
+                        body: resultData[i].commentBody
                     });
                 }
             }
