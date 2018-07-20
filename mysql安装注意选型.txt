@@ -10,9 +10,9 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'MyPassword' WITH GRANT 
 FLUSH PRIVILEGES; 
 client.cnf
 在[client]字段里加入
-default-character-set=utf8
+default-character-set=utf8mb4
 server.cnf
 在[mysqld]字段里加入
-character-set-server=utf8
+character-set-server=utf8mb4
 mysql>use mydb
 mysql>alter database mydb character set utf-8;

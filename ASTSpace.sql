@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySqlServer
-Source Server Version : 50544
-Source Host           : 10.67.129.123:3306
+Source Server         : funmaker.tech
+Source Server Version : 50556
+Source Host           : 47.75.127.61:3306
 Source Database       : ASTSpace
 
 Target Server Type    : MYSQL
-Target Server Version : 50544
+Target Server Version : 50556
 File Encoding         : 65001
 
-Date: 2018-07-19 09:40:25
+Date: 2018-07-20 08:46:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,7 +30,7 @@ CREATE TABLE `actives_info` (
   `activePublishDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `activeTypeName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for comments_info
@@ -44,7 +44,7 @@ CREATE TABLE `comments_info` (
   `commentBody` longtext,
   `commentFavour` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for community_info
@@ -60,7 +60,7 @@ CREATE TABLE `community_info` (
   `communityGroup` varchar(255) DEFAULT NULL,
   `communityPrivilege` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for joins_info
@@ -79,7 +79,7 @@ CREATE TABLE `joins_info` (
   `otherInfo` varchar(255) DEFAULT NULL,
   `activeSession` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for users_info
@@ -98,4 +98,4 @@ CREATE TABLE `users_info` (
   `userPrivilege` varchar(255) DEFAULT NULL,
   `otherInfo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
