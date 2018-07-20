@@ -176,6 +176,10 @@
         },
         beforeMount()
         {
+            document.desc = "----------------";
+            document.link = "----------------";
+            document.imgUrl = "http://funmaker.fun/img/astLogo.jpg";
+
             this.GetUserInfo();
         }
     }
